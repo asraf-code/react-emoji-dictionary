@@ -13,7 +13,7 @@ var emojiDictionary = {
   "😣": "Perervering Face",
   "😥": "Sad but relieved Face",
   "😪": "Sleepy Face",
-  "😫": "Tired Face"
+  "😫": "Tired Face",
 };
 
 var emojisWeKnow = Object.keys(emojiDictionary);
