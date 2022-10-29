@@ -1,0 +1,80 @@
+ReactJs site - https://reactjs.org/
+
+Declarative: you can tell react this is how it should look and react will make it happen. It is reacts job to put the change in the DOM, and you don't need to add DOM logic.
+
+Component Based: component libraries that have functionality inside it built using js and react. (unlike CSS components.)
+
+LOWA: base react can be written across different platforms/ecosystems. eg: VR, Xbox, Mobile, Browser etc.
+
+Main goal: understand react concepts and thinking declaratively. 
+
+index.html uses the combined JS file of index.js and app.js (built into one file) in its file.
+- <div id="root"></div> This is where react puts its own code inside the index.html file.
+- inside the index.js file it asks to render the app element (app.js) and send it to element with id=root.
+-- All of this is done by react and react DOM(browser). [React Dom is a library which takes react, converts it and puts it in the browser DOM. It acts as an interpreter/compiler]
+
+
+file heirarchy in reactjs:
+[index.html<< index.js<< app.js<< styles.css] flow of documents.
+
+App.js is where we are going to work. (it is like working with regular html. The main difference is you will be working with functions in app.js. App.js takes JS and converts it into HTML. This is being done using JSX)
+
+Any styling done in styles.css will be imported into html via app.js
+
+Getting to know to JSX
+It is just the HTML thing(inside app.js).
+The good thing about this html thing is that you can put JS inside it.
+: var headingText = "inside outtt";
+: (inside function APP and insisde the return) <h1>{headingText}</h1> [this is templating (replacing variable), which is not possible using just html]
+
+syntax: instead of class = className
+: instead of background-color = backgroundColor
+:(in react to give style you need to give it an object instead of a "string")
+: <h1 style={{ backgroundColor: color }}> { headingText }
+The inner brace is for the object. The outer brace is implying that this is JS.
+
+In react you can define variables inside JSX and when it is rendering it replaces the variable value with the actual value.
+: var color = "green";
+: (inside fn App) style= {{ backgroundColor = color }}
+
+
+onClick= {fn(define)}; This can be used inside button tag to trigger click events. Define the function inside the fn App() before the return definition. {Js}
+[onClick is different than DOM method onclick
+we don't need to addEventListener() in React]
+
+Update Like Counter in View (display in browser)
+: import {useState} - (this is function like readlineSync)
+: call the function inside the App()
+      const [likeCounter]  useState(0)
+      - this fn returns 2 things thus it is an array:
+      1. Like Counter (variable): likeCounter
+      2. Setter or SetStateAction(number) (function): setLikeCounter
+[When you call a fn you give it an initial value called argument: useState(0);
+This value should be the value you want your variable (likeCounter) to have.]
+: to output in view include {liveCounter} inside the JSX after the botton tag.
+
+
+VISER (render cycle) - (First render) View -> (where would user) Interact -> (how to update) State in Event Handler -> (then you consume State insisde view) Render it (last view). [otherwise: input->processing->output]
+
+/Handle data input from element
+: for this we need to use <input> along with 'onChange' event handler.
+: onChange={inputChangeHandler}
+To compare and get results from an object DS:
+      -set input value to variable (key)
+      -pass variable into object for key-pair comparison and set to new variable (pair)
+      -now consume this variable in the final view (useState). 
+
+
+List in React
+- a list is nothing but an array
+- to print out an array we use for loop
+- In react map() is like for loop
+      - this takes a funtion inside it and it runs it with a new value each time (maps over an array until last item in the array)
+
+Put a click Handler om list item
+onClick for any item, it show which item was clicked from the list
+syntax: onClick={() => emojiClickHandler(emoji)}
+[key={item}]
+
+Converting object to array
+- to do this we need to use fn Object.keys()
