@@ -14,6 +14,7 @@ var emojiDictionary = {
   "😥": "Sad but relieved Face",
   "😪": "Sleepy Face",
   "😫": "Tired Face",
+  "🤐": "Zipper Face",
 };
 
 var emojisWeKnow = Object.keys(emojiDictionary);
