@@ -1,2 +1,3 @@
 # react-emoji-dictionary
-Created with CodeSandbox
+
+This is a react app to find the meaning of an emoji.
