@@ -1,12 +1,14 @@
 ReactJs site - https://reactjs.org/
 
-Declarative: you can tell react this is how it should look and react will make it happen. It is reacts job to put the change in the DOM, and you don't need to add DOM logic.
+Declarative: you can tell react this is how it should look and react will make it happen. It is reacts job to put the change in the DOM, and you don't need to add DOM logic (line .innerText or .innerHTML).
 
 Component Based: component libraries that have functionality inside it built using js and react. (unlike CSS components.)
 
 LOWA: base react can be written across different platforms/ecosystems. eg: VR, Xbox, Mobile, Browser etc.
 
 Main goal: understand react concepts and thinking declaratively. 
+
+-------
 
 index.html uses the combined JS file of index.js and app.js (built into one file) in its file.
 - <div id="root"></div> This is where react puts its own code inside the index.html file.
@@ -21,14 +23,16 @@ App.js is where we are going to work. (it is like working with regular html. The
 
 Any styling done in styles.css will be imported into html via app.js
 
+-----------
+
 Getting to know to JSX
 It is just the HTML thing(inside app.js).
 The good thing about this html thing is that you can put JS inside it.
 : var headingText = "inside outtt";
-: (inside function APP and insisde the return) <h1>{headingText}</h1> [this is templating (replacing variable), which is not possible using just html]
+: (inside function APP() and insisde the return()) <h1>{headingText}</h1> [this is templating (replacing variable), which is not possible using just html]
 
 syntax: instead of class = className
-: instead of background-color = backgroundColor
+: instead of background-color = backgroundColor [no "-" for keyValue pairs]
 :(in react to give style you need to give it an object instead of a "string")
 : <h1 style={{ backgroundColor: color }}> { headingText }
 The inner brace is for the object. The outer brace is implying that this is JS.
@@ -37,44 +41,87 @@ In react you can define variables inside JSX and when it is rendering it replace
 : var color = "green";
 : (inside fn App) style= {{ backgroundColor = color }}
 
+----------
 
 onClick= {fn(define)}; This can be used inside button tag to trigger click events. Define the function inside the fn App() before the return definition. {Js}
 [onClick is different than DOM method onclick
 we don't need to addEventListener() in React]
 
-Update Like Counter in View (display in browser)
+----------
+https://beta.reactjs.org/learn/state-a-components-memory
+
+useState(): [to update the changes (variables) in app via events and then updates in final rendered view as well]
+
+To Update Like Counter in View (display in browser)
 : import {useState} - (this is function like readlineSync)
 : call the function inside the App()
-      const [likeCounter]  useState(0)
+      const [likeCounter, setLikeCounter] =  useState(0);
       - this fn returns 2 things thus it is an array:
       1. Like Counter (variable): likeCounter
       2. Setter or SetStateAction(number) (function): setLikeCounter
 [When you call a fn you give it an initial value called argument: useState(0);
 This value should be the value you want your variable (likeCounter) to have.]
-: to output in view include {liveCounter} inside the JSX after the botton tag.
+: to output in view include {liveCounter} inside the JSX after the botton tag. This {liveCounter} is updated by the useState() after processeing in the app.
 
+[
+      View: return() inside app and page in browser
 
-VISER (render cycle) - (First render) View -> (where would user) Interact -> (how to update) State in Event Handler -> (then you consume State insisde view) Render it (last view). [otherwise: input->processing->output]
+      When useState is updated [when setterFn() is called] it calls the entire App()fn again. [ this useState is necessary for outputting updated variable because:
+      1. eventHandler() cannot be used insisde return () to get upadted variable.
+      2. thus it updates and stores the new value in array and then this is accessed
+      ]
+
+      setLikeCounter() - updates the values to the variable likeCounter outside the eventHandler(). This is why it is called inside the eventHandler() and then the updated variable is accessed in the JSX from the useState(), for outputing to final render. []
+]
+
+---------
+
+Every program in react: take an input -> process -> set a state and consume state back in view -> output.
+
+VISER (render cycle) - (First render) View -> (this is where user) Interact -> (updating) State in eventHandler -> (then you consume State insisde view) Render it (last view). [otherwise: input->processing->output]
+
+---------
 
 /Handle data input from element
 : for this we need to use <input> along with 'onChange' event handler.
 : onChange={inputChangeHandler}
+
+console.log(event.target.value) [ here event= onChnage, target= <input>, value= value inside <input> element]
+[ then using VISER render view]
+
+----------
+
 To compare and get results from an object DS:
       -set input value to variable (key)
       -pass variable into object for key-pair comparison and set to new variable (pair)
-      -now consume this variable in the final view (useState). 
+      -now consume this (pair) variable in the final view (useState). 
 
+[
+      In Object when you put the key it directly gives us the corresponding value.
+]
+
+-----------
 
 List in React
 - a list is nothing but an array
-- to print out an array we use for loop
+- to print out an array we use for loop (in html)
 - In react map() is like for loop
-      - this takes a funtion inside it and it runs it with a new value each time (maps over an array until last item in the array)
+      - this takes a funtion inside it and it runs it with a new value each time (maps over an array (value) until last item in the array (unlike in html where it loops over index))
 
-Put a click Handler om list item
+      list.map(function (item, index) {
+            return
+            <li>
+                  {item}
+            </li>
+      })
+
+JSX conditionals - 
+
+Put a click Handler on list item
 onClick for any item, it show which item was clicked from the list
 syntax: onClick={() => emojiClickHandler(emoji)}
-[key={item}]
+
+Set unique key for each item of the list [key={item}]
 
 Converting object to array
-- to do this we need to use fn Object.keys()
+- to do this we need to use fn Object.keys(objectName)
